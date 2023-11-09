@@ -11,7 +11,7 @@ Regulator::~Regulator()
 
 void Regulator::Initialization()
 {
-    Serial.begin(9600);
+    Serial.begin(115200);
     pinMode(RegulatorPin, OUTPUT);
     Serial.println("[System Information]: Initialized Regualator!");
     delay(1000);

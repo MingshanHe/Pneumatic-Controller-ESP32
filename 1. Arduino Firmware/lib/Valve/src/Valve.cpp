@@ -9,7 +9,7 @@ Valve::~Valve()
 }
 void Valve::Initialization()
 {
-    Serial.begin(9600);
+    Serial.begin(115200);
     // Serial.println("[System Information]: Initializing Valve!");
     // delay(1000); 
     pinMode(PositiveValvePin, OUTPUT);
