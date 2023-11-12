@@ -137,6 +137,7 @@ void Wifi_Module::Initialization()
     pinMode(output2, OUTPUT);
     pinMode(output3, OUTPUT);
     pinMode(output4, OUTPUT);
+    pinMode(output6, OUTPUT);
     pinMode(Valve1, OUTPUT);
     pinMode(Valve2, OUTPUT);
     pinMode(Valve3, OUTPUT);
@@ -301,4 +302,5 @@ void Wifi_Module::Loop()
 
     int pressure = (100 - inputMessage.toInt())*255/100;
     analogWrite(output6, pressure);
+    delay(100);
 }
