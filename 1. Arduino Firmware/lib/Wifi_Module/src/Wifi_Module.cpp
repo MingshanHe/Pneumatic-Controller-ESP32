@@ -42,6 +42,9 @@ int State3 = LOW;
 int State4 = LOW;   
 int State5 = LOW;   
 
+int PowerFlag = 0;
+int ControlFlag = 0;
+
 String inputMessage;
 String inputDelay1;
 String inputDelay2;
@@ -96,13 +99,13 @@ String processor(const String& var){
     else if(var == "BUTTONPLACEHOLDER2"){
         String buttons ="";
         String outputStateValue = outputState2();
-        buttons+= "<h4>Positive(On)/Negative(Off) SWITCH <span id=\"outputState2\"></span></h4><label class=\"switch\"><input type=\"checkbox\" onchange=\"toggleCheckbox2(this)\" id=\"output2\" " + outputStateValue + "><span class=\"slider\"></span></label>";
+        buttons+= "<h4>POWER SWITCH <span id=\"outputState2\"></span></h4><label class=\"switch\"><input type=\"checkbox\" onchange=\"toggleCheckbox2(this)\" id=\"output2\" " + outputStateValue + "><span class=\"slider\"></span></label>";
         return buttons;
     }
     else if(var == "BUTTONPLACEHOLDER3"){
         String buttons ="";
         String outputStateValue = outputState3();
-        buttons+= "<h4>Release(On) and Shrink(On) SWITCH <span id=\"outputState3\"></span></h4><label class=\"switch\"><input type=\"checkbox\" onchange=\"toggleCheckbox3(this)\" id=\"output3\" " + outputStateValue + "><span class=\"slider\"></span></label>";
+        buttons+= "<h4>Release(On) and Shrink(Off) SWITCH <span id=\"outputState3\"></span></h4><label class=\"switch\"><input type=\"checkbox\" onchange=\"toggleCheckbox3(this)\" id=\"output3\" " + outputStateValue + "><span class=\"slider\"></span></label>";
         return buttons;
     }
     else if(var == "inputFloat1"){
@@ -151,7 +154,11 @@ void Wifi_Module::Initialization()
     digitalWrite(output4, State4);
 
 
-
+    digitalWrite(Valve1, LOW);
+    digitalWrite(Valve2, LOW);
+    digitalWrite(Valve3, LOW);
+    digitalWrite(Valve4, LOW);
+    digitalWrite(Valve1, LOW);
     // digitalWrite(output5, State5);
 
     Serial.begin(115200);
@@ -273,31 +280,53 @@ void Wifi_Module::Loop()
     digitalWrite(output4, State4);
 //   digitalWrite(output5, State5);
 
-    if(State2)
-    {
-        digitalWrite(Valve1, HIGH);
-    }
-    else
-    {
-        digitalWrite(Valve1, LOW);
-    }
+    // if(State2)
+    // {
+    //     // digitalWrite(Valve1, HIGH);
+    //     PowerFlag = 1;
+    // }
+    // else
+    // {
+    //     // digitalWrite(Valve1, LOW);
+    //     PowerFlag = 0;
+    // }
+
     if(State3)
     {
+        // digitalWrite(Valve1, LOW);
+        // digitalWrite(Valve2, LOW);
+        // digitalWrite(Valve3, LOW);
+        // digitalWrite(Valve4, LOW);
+        // digitalWrite(Valve1, LOW);
         inputDelay1 =  readFile(SPIFFS, "/inputFloat1.txt");
         inputDelay2 =  readFile(SPIFFS, "/inputFloat2.txt");
         inputDelay3 =  readFile(SPIFFS, "/inputFloat3.txt");
         delay(1000*inputDelay1.toInt());
-        digitalWrite(Valve2, HIGH);
+        digitalWrite(Valve1, HIGH);
         delay(1000*inputDelay2.toInt());
-        digitalWrite(Valve3, HIGH);
-        delay(1000*inputDelay3.toInt());
-        digitalWrite(Valve4, HIGH);
+        digitalWrite(Valve2, HIGH);
+        // delay(1000*inputDelay3.toInt());
+        // digitalWrite(Valve4, HIGH);
     }
     else
     {
+        // digitalWrite(Valve2, LOW);
+        // digitalWrite(Valve3, LOW);
+        // digitalWrite(Valve4, LOW);
+        // digitalWrite(Valve1, LOW);
+        // digitalWrite(Valve2, LOW);
+        // digitalWrite(Valve3, LOW);
+        // digitalWrite(Valve4, LOW);
+
+        inputDelay1 =  readFile(SPIFFS, "/inputFloat1.txt");
+        inputDelay2 =  readFile(SPIFFS, "/inputFloat2.txt");
+        inputDelay3 =  readFile(SPIFFS, "/inputFloat3.txt");
+        delay(1000*inputDelay1.toInt());
         digitalWrite(Valve2, LOW);
-        digitalWrite(Valve3, LOW);
-        digitalWrite(Valve4, LOW);
+        delay(1000*inputDelay3.toInt());
+        digitalWrite(Valve1, LOW);
+        // delay(1000*inputDelay3.toInt());
+        // digitalWrite(Valve4, HIGH);
     }
 
     int pressure = (100 - inputMessage.toInt())*255/100;

@@ -39,67 +39,7 @@ const char index_html[] PROGMEM = R"rawliteral(
         <input type="submit" value="Submit">
     </form><br>
 
-   %BUTTONPLACEHOLDER1%
-    <script>function toggleCheckbox1(element) {
-    var xhr = new XMLHttpRequest();
-    if(element.checked){ xhr.open("GET", "/update?state1=1", true); }
-    else { xhr.open("GET", "/update?state1=0", true); }
-    xhr.send();
-    }
-    setInterval(function ( ) {
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-        var inputChecked;
-        var outputStateM;
-        if( this.responseText == 1){ 
-            inputChecked = false;
-            outputStateM = "Off";
-        }
-        else { 
-            inputChecked = true;
-            outputStateM = "On";
-        }
-        document.getElementById("output1").checked = inputChecked;
-        document.getElementById("outputState1").innerHTML = outputStateM;
-        }
-    };
-    xhttp.open("GET", "/state1", true);
-    xhttp.send();
-    }, 1000 ) ;
-    </script>
 
-
-
-    %BUTTONPLACEHOLDER2%
-    <script>function toggleCheckbox2(element) {
-    var xhr = new XMLHttpRequest();
-    if(element.checked){ xhr.open("GET", "/update?state2=1", true); }
-    else { xhr.open("GET", "/update?state2=0", true); }
-    xhr.send();
-    }
-    setInterval(function ( ) {
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-        var inputChecked;
-        var outputStateM;
-        if( this.responseText == 1){ 
-            inputChecked = false;
-            outputStateM = "Off";
-        }
-        else { 
-            inputChecked = true;
-            outputStateM = "On";
-        }
-        document.getElementById("output2").checked = inputChecked;
-        document.getElementById("outputState2").innerHTML = outputStateM;
-        }
-    };
-    xhttp.open("GET", "/state2", true);
-    xhttp.send();
-    }, 1000 ) ;
-    </script>
 
     %BUTTONPLACEHOLDER3%
     <script>function toggleCheckbox3(element) {
@@ -236,6 +176,69 @@ public:
     //     }
     // };
     // xhttp.open("GET", "/state5", true);
+    // xhttp.send();
+    // }, 1000 ) ;
+    // </script>
+
+
+    //    %BUTTONPLACEHOLDER1%
+    // <script>function toggleCheckbox1(element) {
+    // var xhr = new XMLHttpRequest();
+    // if(element.checked){ xhr.open("GET", "/update?state1=1", true); }
+    // else { xhr.open("GET", "/update?state1=0", true); }
+    // xhr.send();
+    // }
+    // setInterval(function ( ) {
+    // var xhttp = new XMLHttpRequest();
+    // xhttp.onreadystatechange = function() {
+    //     if (this.readyState == 4 && this.status == 200) {
+    //     var inputChecked;
+    //     var outputStateM;
+    //     if( this.responseText == 1){ 
+    //         inputChecked = false;
+    //         outputStateM = "Off";
+    //     }
+    //     else { 
+    //         inputChecked = true;
+    //         outputStateM = "On";
+    //     }
+    //     document.getElementById("output1").checked = inputChecked;
+    //     document.getElementById("outputState1").innerHTML = outputStateM;
+    //     }
+    // };
+    // xhttp.open("GET", "/state1", true);
+    // xhttp.send();
+    // }, 1000 ) ;
+    // </script>
+
+
+
+    // %BUTTONPLACEHOLDER2%
+    // <script>function toggleCheckbox2(element) {
+    // var xhr = new XMLHttpRequest();
+    // if(element.checked){ xhr.open("GET", "/update?state2=1", true); }
+    // else { xhr.open("GET", "/update?state2=0", true); }
+    // xhr.send();
+    // }
+    // setInterval(function ( ) {
+    // var xhttp = new XMLHttpRequest();
+    // xhttp.onreadystatechange = function() {
+    //     if (this.readyState == 4 && this.status == 200) {
+    //     var inputChecked;
+    //     var outputStateM;
+    //     if( this.responseText == 1){ 
+    //         inputChecked = false;
+    //         outputStateM = "Off";
+    //     }
+    //     else { 
+    //         inputChecked = true;
+    //         outputStateM = "On";
+    //     }
+    //     document.getElementById("output2").checked = inputChecked;
+    //     document.getElementById("outputState2").innerHTML = outputStateM;
+    //     }
+    // };
+    // xhttp.open("GET", "/state2", true);
     // xhttp.send();
     // }, 1000 ) ;
     // </script>
